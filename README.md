@@ -11,4 +11,4 @@ Before you run the code, make sure the following three items have been completed
     - The second is called *drivers.txt* where it contains the names of the drivers
     - *Note:* Data has been provided in both files.
 
-Once that is completed, run the command *node assignShipmentToDrivers.js shipments.txt drivers.txt*
+Once that is completed, cd to the project and run the command *node assignShipmentToDrivers.js shipments.txt drivers.txt*

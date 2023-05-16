@@ -35,7 +35,7 @@ function calculateSuitability(shipment, driver)
 
 }
 
-//Assiging shipments to drivers
+//Assiging shipments to drivers while calulating the total suitability score (SS)
 function assignShipmentsToDrivers(shipments, drivers) 
 {
   const shipmentCount = shipments.length;
@@ -45,12 +45,13 @@ function assignShipmentsToDrivers(shipments, drivers)
   const shipmentDriverMap = new Map(); //Creating a new map where store the shipments to the driver
   let totalSuitability = 0;
 
-  //Looping though shipmentDriverMap until it is equal to shipmentCount
+  //Looping though shipmentDriverMap until all shipments are assigned to drivers
   while (shipmentDriverMap.size < shipmentCount) 
   {
-    let maxSuitability = 0;
-    let maxShipmentIndex, maxDriverIndex;
+    let maxSuitability = 0; //To keep track of the maximum suitability score found during each lop
+    let maxShipmentIndex, maxDriverIndex; //To make sure that each driver is paired with an address with the highest SS
 
+    //Goes through each address and checks that if it is already been assigned to a driver. 
     for (let shipmentIndex = 0; shipmentIndex < shipmentCount; shipmentIndex++) 
     {
       if (shipmentAssignedToDriver[shipmentIndex]) 
@@ -58,15 +59,18 @@ function assignShipmentsToDrivers(shipments, drivers)
           continue;
       }
 
-      //Checking each shipment and driver combination.
+      //Goes though each driver and checks if it is already been assigned a shipment.
       for (let driverIndex = 0; driverIndex < driverCount; driverIndex++) 
       {
         if (driverAssignedToShipment[driverIndex]) continue;
 
+        //Calulates the SS score of the current shipment and driver 
         const driverName = drivers[driverIndex].toLowerCase(); // Convert driver name to lowercase
         const shipmentAddress = shipments[shipmentIndex].toLowerCase(); // Convert shipment address to lowercase
         const suitability = calculateSuitability(shipmentAddress, driverName);
 
+        //Checks to see if the current suityability score is greater than the maximum suitability score
+        //If yes, then it will update the score and update the values of each assigned driver and shipment
         if (suitability > maxSuitability) 
         {
           maxSuitability = suitability;
@@ -116,10 +120,10 @@ function main()
   const { totalSuitability, shipmentDriverMap } = assignShipmentsToDrivers(shipments, drivers);
   
   console.log('Total Suitability:', totalSuitability);
-  console.log('Shipment - Driver Assignments:');
+  console.log('Shipment -> Driver Assignments:');
   shipmentDriverMap.forEach((driver, shipment) => 
   {
-    console.log(`${shipment} - ${driver}`);
+    console.log(`${shipment} -> ${driver}`);
   });
 
 }

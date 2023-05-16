@@ -1,7 +1,7 @@
 # Platform-Science-Code-Exercise
 Coding challenge for platform science
 
-# Running the project
+## Running the project
 
 Before you run the code, make sure the following three items have been completed.
 
@@ -9,6 +9,6 @@ Before you run the code, make sure the following three items have been completed
 2. There is data in the txt files. 
     - One file called *shipment.txt* where it contains the street addresses of the shipment destinations. 
     - The second is called *drivers.txt* where it contains the names of the drivers
-    - There is already data in both files if you choose not to provide your own data.
+    - *Note:* Data has been provided in both files.
 
-Once that is completed, run the command *node assignsShipmentToDrivers.js*
+Once that is completed, run the command *node assignShipmentToDrivers.js shipments.txt drivers.txt*

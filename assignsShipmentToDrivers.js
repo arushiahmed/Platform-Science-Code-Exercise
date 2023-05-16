@@ -47,6 +47,7 @@ function assignShipmentsToDrivers(shipments, drivers) {
           continue;
       }
 
+      //Checking each shipment and driver combination.
       for (let driverIndex = 0; driverIndex < driverCount; driverIndex++) {
         if (driverAssignedToShipment[driverIndex]) continue;
 
@@ -63,6 +64,7 @@ function assignShipmentsToDrivers(shipments, drivers) {
     }
 
     totalSuitability += maxSuitability;
+    //Makes sure that each conbination of shipment and driver are not considered during the next iterations
     shipmentAssignedToDriver[maxShipmentIndex] = true;
     driverAssignedToShipment[maxDriverIndex] = true;
     shipmentDriverMap.set(shipments[maxShipmentIndex], drivers[maxDriverIndex]);
@@ -74,6 +76,7 @@ function assignShipmentsToDrivers(shipments, drivers) {
   };
 }
 
+//Reads the shipments.txt and drivers.txt files
 function readInputFiles(shipmentFile, driverFile) {
   const shipments = fs.readFileSync(shipmentFile, 'utf-8').trim().split('\n');
   const drivers = fs.readFileSync(driverFile, 'utf-8').trim().split('\n');
